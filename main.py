@@ -25,6 +25,5 @@ def check_verion() -> None:
             sys.exit();
 
 if __name__ == '__main__': 
-    check_verion()
     load_dotenv()
     bot.run_discord_bot()

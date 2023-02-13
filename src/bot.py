@@ -28,7 +28,7 @@ async def send_message(message, user_message):
     try:
         response = '> **' + user_message + '** - <@' + \
             str(author) + '> \n\n'
-        response = f"{response}{await responses.handle_response(user_message)}"
+        response = f"{response}{await responses.response(user_message)}"
         if len(response) > 1900:
             # Split the response into smaller chunks of no more than 1900 characters each(Discord limit is 2000 per chunk)
             if "```" in response:
@@ -105,7 +105,7 @@ async def send_start_prompt(client):
                 prompt = f.read()
                 if (discord_channel_id):
                     logger.info(f"Send starting prompt with size {len(prompt)}")
-                    responseMessage = await responses.handle_response(prompt)
+                    responseMessage = await responses.response(prompt)
                     channel = client.get_channel(int(discord_channel_id))
                     await channel.send(responseMessage)
                     logger.info(f"Starting prompt response:{responseMessage}")
